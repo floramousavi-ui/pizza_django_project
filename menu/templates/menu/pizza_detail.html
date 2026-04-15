@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ pizza.name }} | Pizza Take-Out{% endblock %}
+
+{% block content %}
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title">{{ pizza.name }}</h2>
+            <p class="card-text">{{ pizza.description }}</p>
+
+            <h4 class="mt-4">Customize your pizza</h4>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Add to cart</button>
+                <a href="{% url 'menu:menu_list' %}" class="btn btn-secondary">Back to menu</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

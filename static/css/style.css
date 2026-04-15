@@ -1,0 +1,86 @@
+body {
+    min-height: 100vh;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.card {
+    border-radius: 12px;
+}
+
+.btn {
+    border-radius: 8px;
+}
+
+h1, h2, h3, h4, h5 {
+    color: #212529;
+}
+
+.card-title {
+    margin-bottom: 0.75rem;
+}
+
+.alert {
+    border-radius: 10px;
+}
+
+.status-badge {
+    color: white;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.order-status-pending {
+    background-color: #6c757d;
+}
+
+.order-status-preparing {
+    background-color: #fd7e14;
+}
+
+.order-status-completed {
+    background-color: #198754;
+}
+
+.item-box {
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: white;
+}
+
+.section-title {
+    margin-bottom: 1rem;
+}
+
+.meta-text {
+    color: #6c757d;
+    font-size: 0.95rem;
+}
+
+/* Fix white section headings on light backgrounds */
+.ftco-section .heading-section h2,
+.ftco-section .heading-section p,
+.ftco-section .heading-section .subheading,
+.ftco-section .heading-section.text-center h2,
+.ftco-section .heading-section.text-center p,
+.ftco-section .heading-section.ftco-animate h2,
+.ftco-section .heading-section.ftco-animate p {
+    color: #212529 !important;
+}
+
+.ftco-section .heading-section .flip span {
+    background: #212529 !important;
+}
+
+.ftco-section .heading-section,
+.ftco-section .heading-section * {
+    color: #212529 !important;
+}

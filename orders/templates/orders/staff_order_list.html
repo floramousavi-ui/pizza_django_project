@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Orders | Pizza Take-Out{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">Manage Orders</h2>
+
+    {% if orders %}
+        {% for order in orders %}
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">Order #{{ order.id }}</h4>
+                    <p class="meta-text mb-1">Customer: {{ order.user.username }}</p>
+                    <p class="meta-text mb-1">Date: {{ order.created_at }}</p>
+
+                    <p class="mb-2">
+                        Status:
+                        <span class="status-badge order-status-{{ order.status|lower }}">
+                            {{ order.status }}
+                        </span>
+                    </p>
+
+                    <p class="mb-3"><strong>Total:</strong> {{ order.total_price }}</p>
+
+                    <h5 class="section-title">Items</h5>
+                    {% for item in order.items.all %}
+                        <div class="item-box">
+                            <strong>{{ item.item_name_snapshot }}</strong><br>
+                            Quantity: {{ item.quantity }}<br>
+                            Price: {{ item.item_price_snapshot }}
+                        </div>
+                    {% empty %}
+                        <p>No items in this order.</p>
+                    {% endfor %}
+
+                    <a href="{% url 'orders:update_order_status' order.id %}" class="btn btn-outline-primary btn-sm">
+                        Update status
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-secondary">No orders found.</div>
+    {% endif %}
+{% endblock %}

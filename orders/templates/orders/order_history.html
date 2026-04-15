@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}My Orders | Pizza Take-Out{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">My Orders</h2>
+
+    {% if orders %}
+        {% for order in orders %}
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">Order #{{ order.id }}</h4>
+                    <p class="meta-text mb-1">Date: {{ order.created_at }}</p>
+
+                    <p class="mb-2">
+                        Status:
+                        <span class="status-badge order-status-{{ order.status|lower }}">
+                            {{ order.status }}
+                        </span>
+                    </p>
+
+                    <p class="mb-3"><strong>Total:</strong> {{ order.total_price }}</p>
+
+                    <h5 class="section-title">Items</h5>
+                    {% for item in order.items.all %}
+                        <div class="item-box">
+                            <strong>{{ item.item_name_snapshot }}</strong><br>
+                            Quantity: {{ item.quantity }}<br>
+                            Price: {{ item.item_price_snapshot }}
+                        </div>
+                    {% empty %}
+                        <p>No items in this order.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-secondary">You have not placed any orders yet.</div>
+    {% endif %}
+{% endblock %}

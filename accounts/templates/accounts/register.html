@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Register | Pizza Take-Out{% endblock %}
+
+{% block content %}
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title mb-4">Create Account</h2>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
