@@ -1,21 +1,125 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}{{ pizza.name }} | Pizza Take-Out{% endblock %}
 
 {% block content %}
-    <div class="card shadow-sm">
-        <div class="card-body">
-            <h2 class="card-title">{{ pizza.name }}</h2>
-            <p class="card-text">{{ pizza.description }}</p>
+<style>
+    .ftco-section .customize-heading,
+    .ftco-section .customize-heading * {
+        color: #212529 !important;
+    }
 
-            <h4 class="mt-4">Customize your pizza</h4>
+    .pizza-image-box {
+        min-height: 420px;
+        border-radius: 10px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
 
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Add to cart</button>
-                <a href="{% url 'menu:menu_list' %}" class="btn btn-secondary">Back to menu</a>
-            </form>
+    .customize-box,
+    .customize-box * {
+        color: #212529 !important;
+    }
+
+    .customize-box {
+        background: #ffffff;
+        border-radius: 10px;
+    }
+
+    .customize-box label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .customize-box select,
+    .customize-box input[type="number"],
+    .customize-box input[type="text"],
+    .customize-box input[type="email"],
+    .customize-box input[type="password"],
+    .customize-box textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        margin-bottom: 14px;
+        color: #212529 !important;
+        background-color: #ffffff !important;
+    }
+
+    .customize-box input[type="checkbox"] {
+        margin-right: 8px;
+    }
+
+    .customize-box ul,
+    .customize-box li {
+        color: #212529 !important;
+    }
+
+    .customize-box .helptext {
+        display: block;
+        font-size: 0.9rem;
+        color: #6c757d !important;
+        margin-top: -8px;
+        margin-bottom: 12px;
+    }
+
+    .customize-box ul.errorlist {
+        color: #dc3545 !important;
+        padding-left: 18px;
+        margin-bottom: 10px;
+    }
+
+    .customize-box .btn-primary,
+    .customize-box .btn-secondary {
+        color: #ffffff !important;
+    }
+
+    .pizza-info-list p {
+        margin-bottom: 10px;
+    }
+</style>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+            <div class="col-md-8 customize-heading text-center ftco-animate">
+                <h2 class="mb-4">{{ pizza.name }}</h2>
+                <p>{{ pizza.description }}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 ftco-animate">
+                <div class="pizza-image-box"
+                     style="background-image: url('{% static 'pizza_template/images/pizza-1.jpg' %}');">
+                </div>
+            </div>
+
+            <div class="col-md-6 ftco-animate">
+                <div class="customize-box p-4">
+                    <h3 class="mb-4">Customize your pizza</h3>
+
+                    <div class="pizza-info-list mb-4">
+                        <p><strong>Pizza:</strong> {{ pizza.name }}</p>
+                        <p><strong>Description:</strong> {{ pizza.description }}</p>
+                        <p><strong>Choose a size, select toppings, and set quantity.</strong></p>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary py-3 px-4">Add to cart</button>
+                            <a href="{% url 'menu:menu_list' %}" class="btn btn-secondary py-3 px-4">Back to menu</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
+</section>
 {% endblock %}
